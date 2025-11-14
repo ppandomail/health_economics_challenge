@@ -1,7 +1,7 @@
 # 🏥 Desafío de Machine Learning en Economía de la Salud
 
 **Universidad Nacional del Oeste (UNO) - 2025**  
-**Materia:** Machine Learning  
+**Materia:** Aplicaciones en Ciencia de Datos  
 **Modalidad:** Trabajo en grupos de 3 personas
 
 ---
