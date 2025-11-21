@@ -24,7 +24,7 @@
 
 ## 🎯 Descripción del Desafío
 
-En este desafío aplicarán técnicas de Machine Learning para predecir el **gasto de bolsillo (Out-of-Pocket) per cápita en PPP** que los ciudadanos realizarán en salud durante el año **2022**, utilizando datos históricos de ~78 países del período 2000-2021.
+En este desafío aplicarán técnicas de Machine Learning para predecir el **gasto de bolsillo (Out-of-Pocket) per cápita en PPP** (Purchasing Power Parity, Paridad de Poder Adquisitivo en español))que los ciudadanos realizarán en salud durante el año **2022**, utilizando datos históricos de 23 países del período 2000-2021.
 
 El desafío combina:
 - 📊 **Análisis de datos** de economía de la salud
@@ -115,7 +115,7 @@ train:
   excluir: [2020, 2021]  # Excluye COVID del entrenamiento
 ```
 
-**Esta decisión vale 15% de la nota final** y debe ser documentada en el informe.
+**Esta decisión estratégica** debe ser documentada y justificada en el informe.
 
 ---
 
@@ -330,66 +330,45 @@ exp/[nombre_experimento]/
 
 ## 📤 Qué Deben Entregar
 
-### 1. Código (30%)
+### 1. Código y Configuración
 
 - `01_FE_health.R` con función `AgregarVariables()` completa
-- `CONFIG_minimo.yml` con configuración elegida
+- `CONFIG_basico.yml` con configuración elegida
 - Comentarios explicando razonamiento económico de variables
 
-### 2. Predicciones (15%)
+### 2. Predicciones para 2022
 
 - `predicciones_2022.csv` - Predicciones finales para cada país
+- Formato: `Country Code, year, hf3_ppp_pc_pred`
 
-### 3. Análisis de Importancia (25%)
+### 3. Informe
 
-- Top 20 variables más importantes (desde `tb_importancia.txt`)
-- Interpretación económica: ¿por qué esas variables predicen mejor?
-- Análisis de sus variables creadas: ¿aparecen en el top? ¿por qué?
+Documento que incluya:
 
-### 4. Informe Ejecutivo (30%)
-
-Documento estructurado con:
-
-#### 1. Decisión de Estrategia (15% de nota total)
+#### Decisión de Estrategia COVID
 - Configuración elegida (presente, orden_lead, excluir)
 - Justificación del trade-off
-- Análisis de sensibilidad (opcional pero valorado)
+- Comparación entre diferentes configuraciones probadas
 
-#### 2. Feature Engineering (20%)
+#### Feature Engineering
 - Descripción de variables creadas
 - Justificación teórica económica
-- Impacto en performance
+- Análisis de importancia: ¿qué variables resultaron más importantes?
 
-#### 3. Resultados y Performance (50%)
-- Métricas del modelo (RMSE)
-- Análisis de importancia de variables
-- Interpretación económica
-
-#### 4. Conclusiones (15%)
-- Insights principales
-- Limitaciones del modelo
-- Recomendaciones futuras
-
-**Extensión sugerida:** 8-12 páginas
-
-Ver `evaluacion/checklist_entrega.md` para detalles completos.
+#### Resultados y Conclusiones
+- RMSE obtenido
+- Interpretación económica de resultados
+- Limitaciones y mejoras futuras
 
 ---
 
-## 📊 Criterios de Evaluación
+## 📊 Criterio de Evaluación
 
-| Dimensión | Peso | Descripción |
-|-----------|------|-------------|
-| **Decisión Estratégica COVID** | 15% | Justificación documentada de presente/orden_lead/excluir |
-| **Feature Engineering - Originalidad** | 15% | Variables novedosas y bien fundamentadas |
-| **Feature Engineering - Teoría** | 15% | Conexión con economía de la salud |
-| **Feature Engineering - Impacto** | 10% | Mejora en RMSE vs baseline |
-| **Análisis de Importancia** | 15% | Interpretación económica de variables top |
-| **Código y Documentación** | 10% | Claridad, comentarios, reproducibilidad |
-| **Predicciones** | 10% | Calidad y completitud |
-| **Informe Ejecutivo** | 10% | Estructura, claridad, profundidad |
+**Ranking por RMSE:** Los grupos serán rankeados por el **RMSE de sus predicciones** sobre los datos reales de 2022.
 
-Ver `evaluacion/rubrica_evaluacion.md` para criterios detallados.
+- Menor RMSE = Mejor predicción = Mejor posición en el ranking
+
+**Adicionalmente (solo con fines didácticos):** Se calculará una métrica de ganancia económica basada en el impacto en gasto catastrófico, pero esto es **únicamente para aprender** sobre evaluación de modelos en contextos económicos reales.
 
 ---
 

@@ -1,4 +1,4 @@
-# 💰 Métrica de Evaluación Económica
+# 💰 Métrica de Evaluación Económica (Didáctica)
 
 **Desafío de Machine Learning en Economía de la Salud**
 **Universidad Nacional del Oeste - 2025**
@@ -7,9 +7,11 @@
 
 ## 🎯 Introducción
 
-En este desafío, **NO solo evaluamos el RMSE** (Root Mean Squared Error) de sus predicciones. También evaluamos el **impacto económico** de sus modelos usando una métrica basada en economía de la salud.
+⚠️ **IMPORTANTE:** Esta métrica es **solo con fines didácticos**. El ranking del desafío se hará **únicamente por RMSE**.
 
-### ¿Por qué?
+Esta guía explica una métrica económica alternativa para evaluar modelos de predicción en economía de la salud, mostrando que **no siempre el menor RMSE es lo más importante** en contextos reales.
+
+### ¿Por qué aprender esto?
 
 Un modelo con buen RMSE puede seguir siendo **peligroso** si subestima sistemáticamente el gasto de bolsillo en países pobres, llevando a decisiones políticas incorrectas.
 
@@ -20,7 +22,7 @@ Un modelo con buen RMSE puede seguir siendo **peligroso** si subestima sistemát
 | Modelo A | 0.85 | Subestima gastos en países pobres → Familias en crisis |
 | Modelo B | 0.90 | Sobreestima gastos (conservador) → Políticas más seguras |
 
-**Modelo B es preferible**, aunque tenga peor RMSE.
+En un contexto real de política pública, **Modelo B sería preferible**, aunque tenga peor RMSE.
 
 ---
 
@@ -127,83 +129,30 @@ Ganancia = (0.01 - 0.025) × 45,000,000 × 20,000
 
 ---
 
-## 🎯 Estrategia para Maximizar Ganancia
+## 💡 Lecciones Aprendidas (Solo Didácticas)
 
-### 1. Ser Conservador en Países Pobres
+### 1. El Trade-off entre RMSE y Realidad
 
-En países con **bajo GDP per cápita**, es mejor **sobreestimar** levemente el gasto de bolsillo.
+En contextos reales de política pública:
+- **Ser conservador** puede ser mejor que tener el menor RMSE
+- **Subestimar** gastos en países pobres tiene consecuencias graves
+- Las métricas técnicas (RMSE, MAE) no siempre capturan el **costo real** de los errores
 
-**Por qué:** El impacto de subestimar es **mucho mayor** en países donde las familias ya están al límite.
+### 2. Análisis Post-Modelo
 
----
+Después de entrenar tu modelo, analizar:
+- ¿En qué países mi modelo subestima más?
+- ¿Hay un patrón por nivel de ingreso?
+- ¿Cómo afectaría esto a decisiones de política?
 
-### 2. Identificar Países en Riesgo de Gasto Catastrófico
+### 3. Métricas Domain-Specific
 
-Crear variables que detecten:
-- Países con sistemas de salud débiles
-- Países sin cobertura universal
-- Países con alta desigualdad
+En economía de la salud, métricas como:
+- Gasto catastrófico
+- Empobrecimiento por gastos médicos
+- Cobertura efectiva
 
----
-
-### 3. Usar Información de Tendencias
-
-Si un país está aumentando su gasto de bolsillo:
-- Detectar la tendencia
-- Predecir continuación o aceleración
-
----
-
-## 📊 Cómo Se Calcula Su Nota (Predicciones - 15%)
-
-| Componente | Peso | Rango |
-|------------|------|-------|
-| **RMSE** | 60% | Normalizado entre grupos |
-| **Ganancia Económica** | 30% | Normalizada entre grupos |
-| **Formato Correcto** | 10% | Sí (1 pto) / No (0 ptos) |
-
-### Fórmula:
-
-```r
-# Normalizar RMSE (mejor grupo = 10, peor = 0)
-nota_rmse <- 10 * (1 - (tu_rmse - mejor_rmse) / (peor_rmse - mejor_rmse))
-
-# Normalizar Ganancia (mejor = 10, peor = 0)
-nota_ganancia <- 10 * (tu_ganancia - peor_ganancia) / (mejor_ganancia - peor_ganancia)
-
-# Nota final (sobre 10)
-nota_final <- 0.6 * nota_rmse + 0.3 * nota_ganancia + 1.0
-```
-
----
-
-## 🔍 Ejemplo de Comparación Entre Grupos
-
-| Grupo | RMSE | Ganancia (USD) | Nota RMSE | Nota Ganancia | Nota Final |
-|-------|------|----------------|-----------|---------------|------------|
-| **Grupo 1** | 0.85 | +5M | 10.0 | 8.5 | **9.35** |
-| **Grupo 2** | 0.90 | +8M | 7.5 | 10.0 | **8.50** |
-| **Grupo 3** | 0.82 | -2M | 10.0 | 2.0 | **7.60** |
-
-**Análisis:**
-- **Grupo 1:** Mejor balance entre RMSE y ganancia → Mejor nota
-- **Grupo 2:** Mejor ganancia económica, pero peor RMSE
-- **Grupo 3:** Mejor RMSE, pero **pérdida económica** → Penalizado
-
----
-
-## 💡 Consejos Finales
-
-### ✅ Hacer:
-- Analizar la distribución de errores por nivel de ingreso
-- Detectar si tu modelo subestima en países pobres
-- Crear variables que capturen vulnerabilidad económica
-- Priorizar conservadurismo en predicciones de países frágiles
-
-### ❌ Evitar:
-- Optimizar SOLO para RMSE sin considerar el impacto económico
-- Subestimar gastos en países con bajo GDP
-- Ignorar la tendencia temporal del gasto
+Son más relevantes que RMSE para evaluar impacto real.
 
 ---
 
