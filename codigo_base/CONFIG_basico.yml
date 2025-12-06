@@ -17,7 +17,7 @@
 # ============================================================================
 environment:
   # Directorio base del proyecto (donde están las carpetas codigo_base, dataset, exp)
-  base_dir: "C:/00_dev/00_playground/04_TEACH/UNO/2025/clases/health_economics_challenge"
+  base_dir: "~/Materias/health_economics_challenge"
 
   # Directorio donde están los datos de entrada
   data_dir: "./dataset"
@@ -250,7 +250,7 @@ training_strategy:
 
       # excluir: Lista de años específicos a excluir del training
       # Ejemplo: [2008, 2009] excluiría los años de la crisis financiera
-      excluir: []
+      excluir: [2020, 2021]
 
       # undersampling: Reducir la cantidad de ciertos registros para balancear clases
       # En regresión típicamente se deja vacío. Útil en clasificación desbalanceada

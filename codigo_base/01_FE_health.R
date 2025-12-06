@@ -157,6 +157,10 @@ AgregarVariables <- function(dataset) {
   # if(PARAMS$feature_engineering$param$health_ratios) {
   #   dataset[, mi_ratio := variable1 / (variable2 + 1)]  # +1 para evitar división por 0
   # }
+  
+  dataset[, INDICE_ENVEJECIMIENTO := SP.POP.65UP.TO.ZS / SP.POP.0014.TO.ZS]
+  dataset[, RATIO_GASTO := NE.CON.GOVT.ZS / NE.CON.PRVT.ZS]
+  dataset[, INTENS_EMISIONES_CONCENTR_URB := EN.GHG.CO2.PC.CE.AR5 / EN.URB.MCTY.TL.ZS]
 
   # --- VÁLVULAS DE SEGURIDAD ---
   # Estas secciones protegen al dataset de valores problemáticos
